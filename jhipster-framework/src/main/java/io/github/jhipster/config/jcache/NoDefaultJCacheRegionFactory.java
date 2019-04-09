@@ -19,11 +19,9 @@
 
 package io.github.jhipster.config.jcache;
 
-import java.util.Properties;
-import javax.cache.Cache;
+import org.hibernate.cache.jcache.internal.JCacheRegionFactory;
 
-import org.hibernate.cache.jcache.JCacheRegionFactory;
-import org.hibernate.cache.spi.CacheDataDescription;
+import javax.cache.Cache;
 
 /**
  * Extends the default {@code JCacheRegionFactory} but makes sure all caches already exist to prevent
@@ -38,8 +36,7 @@ public class NoDefaultJCacheRegionFactory extends JCacheRegionFactory {
         "Please update CacheConfiguration.java to add";
 
     @Override
-    protected Cache<Object, Object> createCache(String regionName, Properties properties, CacheDataDescription
-        metadata) {
+    protected Cache<Object, Object> createCache(String regionName) {
         throw new IllegalStateException(EXCEPTION_MESSAGE + " " + regionName);
     }
 }
